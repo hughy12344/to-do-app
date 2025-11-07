@@ -1,7 +1,7 @@
 import './App.css'
-import Banner from './Banner'
-import Metrics from './Metrics.tsx'
-import ToDoList from './ToDoList.tsx'
+import Banner from './components/Banner.tsx'
+import Metrics from './components/Metrics.tsx'
+import ToDoList from './components/ToDoList.tsx'
 
 function App() {
 
