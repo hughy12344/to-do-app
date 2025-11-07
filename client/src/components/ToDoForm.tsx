@@ -1,7 +1,7 @@
 import { SquareX } from "lucide-react"
 import type { FormEvent, ChangeEvent } from "react"
 import { useState } from "react"
-import type { Task } from "../hooks/useTasksManagement"
+import type { Task } from "../hooks/useTasks"
 
 interface ToDoFormProps {
     handleCloseToDoForm: () => void
@@ -17,7 +17,6 @@ const ToDoForm = ({handleCloseToDoForm, handleAddTask}: ToDoFormProps) => {
         const newTask: Task = {
             title,
             description,
-            createdAt: new Date().toISOString()
         }
         console.log(newTask)
         handleAddTask(newTask)

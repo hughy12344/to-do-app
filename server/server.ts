@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import taskRouter from './routes/tasks'
 
 dotenv.config()
 
@@ -22,7 +23,7 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to database'))
 
-
+app.use('/tasks', taskRouter)
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

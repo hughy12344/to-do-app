@@ -1,22 +1,33 @@
-import type { Task } from "../hooks/useTasksManagement"
-
-//Backend URL path
-const apiBase = import.meta.env.VITE_API_URL;
+import type { Task } from "../hooks/useTasks"
 
 // Adds new task record to the backend database
 export const addTask = async (task: Task): Promise<Task> => {
   try {
-    const response = await fetch(`${apiBase}/tasks`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(task),
-      credentials: 'include'
-    })
-    return await response.json()
+      const response = await fetch('http://localhost:8080/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task),
+        credentials: 'include'
+      })
+      return await response.json()
   } catch (err) {
-    console.error('Error adding exercise: ', err)
-    throw err
+      throw err
+  }
+}
+
+export const fetchTasks = async () => {
+  try {
+      const response = await fetch('http://localhost:8080/tasks', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      })
+      return await response.json()
+  } catch (err) {
+      throw err
   }
 }
