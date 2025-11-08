@@ -18,7 +18,6 @@ const ToDoForm = ({handleCloseToDoForm, handleAddTask}: ToDoFormProps) => {
             title,
             description,
         }
-        console.log(newTask)
         handleAddTask(newTask)
         handleCloseToDoForm()
     }

@@ -31,3 +31,17 @@ export const fetchTasks = async () => {
       throw err
   }
 }
+
+export const deleteTask = async (taskID: string) => {
+  try {
+    await fetch(`http://localhost:8080/tasks/${taskID}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    })
+  } catch (err) {
+      throw err
+  }
+}

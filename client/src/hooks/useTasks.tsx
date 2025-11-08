@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { addTask as apiAddTask, fetchTasks as apiFetchTasks } from "../api/taskAPI"
+import { addTask as apiAddTask, fetchTasks as apiFetchTasks, deleteTask as apiDeleteTask } from "../api/taskAPI"
 
 export interface Task {
     _id?: string,
@@ -13,26 +13,29 @@ interface UseTasksManagementProps {
     tasks: Task[]
     isLoading: boolean
     setTasks: React.Dispatch<React.SetStateAction<Task[]>>
+    fetchTasks: () => void
     handleAddTask: (task: Task) => Promise<void>
+    handleDeleteTask: (taskID: string) => void
 }
 
-const useTasksManagement = (initialTasks: Task[] = []): UseTasksManagementProps => {
+const useTasks = (initialTasks: Task[] = []): UseTasksManagementProps => {
     const [tasks, setTasks] = useState<Task[]>(initialTasks)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
+    const fetchTasks = async () => {
+        setIsLoading(true);
+        try {
+            const data: Task[] = await apiFetchTasks();
+            setTasks(data);
+        } catch (err) {
+            console.error("Error fetching tasks:", err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     // Fetch tasks on mount
     useEffect(() => {
-        const fetchTasks = async () => {
-            setIsLoading(true);
-            try {
-                const data: Task[] = await apiFetchTasks();
-                setTasks(data);
-            } catch (err) {
-                console.error("Error fetching tasks:", err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
         fetchTasks();
     }, []);
 
@@ -45,12 +48,23 @@ const useTasksManagement = (initialTasks: Task[] = []): UseTasksManagementProps 
         }
     }
 
+    const handleDeleteTask = async(taskID: string): Promise<void> => {
+        try {
+            await apiDeleteTask(taskID)
+            setTasks((prevTasks) => prevTasks.filter(task => task._id !== taskID))
+        } catch (err) {
+            console.error('Error deleting task: ', err)
+        }
+    }
+
     return {
         tasks,
         setTasks,
+        fetchTasks,
         isLoading,
-        handleAddTask
+        handleAddTask,
+        handleDeleteTask
     }
 }
 
-export default useTasksManagement
+export default useTasks

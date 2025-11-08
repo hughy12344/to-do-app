@@ -32,4 +32,22 @@ router.post('/', async (req, res) => {
     }
 })
 
+// Deleting one
+router.delete('/:id', async (req, res) => {
+    try {
+        const {id} = req.params
+        
+        const deletedTask = await Task.findByIdAndDelete(id)
+
+        if (!deletedTask) {
+            return res.status(404).json({ message: "Task not found " })
+        }
+
+        res.status(200).json({ message: "Task deleted successfully ", deletedTask})
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ message: "Server error deleting task "})
+    }
+})
+
 export default router
