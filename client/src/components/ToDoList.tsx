@@ -24,7 +24,7 @@ const ToDoList = () => {
     }
 
     return(
-        <div>
+        <div className="p-6">
             {showToDoForm && (
                 <ToDoForm
                     handleCloseToDoForm={handleCloseToDoForm}
@@ -32,27 +32,38 @@ const ToDoList = () => {
                 />
             )}
 
-            <h1>To-Do List</h1>
-            <ToDoListUtilities handleOpenToDoForm={handleOpenToDoForm} fetchTasks={fetchTasks} handleDeleteSelectedTask={handleDeleteSelectedTask} selectedTaskID={selectedTaskID}/>
+            <h1 className="text-3xl font-bold mb-4">To-Do List</h1>
+
+            <ToDoListUtilities 
+                handleOpenToDoForm={handleOpenToDoForm} 
+                fetchTasks={fetchTasks} 
+                handleDeleteSelectedTask={handleDeleteSelectedTask} 
+                selectedTaskID={selectedTaskID}
+            />
+
             {isLoading ? (
-                <div className='flex justify-center'>
-                    <div className='w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
+                <div className='flex justify-center py-10'>
+                    <div className='w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
                 </div>
             ) : (
-            <div>
-                <table className='w-full text-left'>
-                    <thead>
+            <div className="overflow-x-auto rounded-lg shadow-md">
+                <table className='w-full text-left border-collapse'>
+                    <thead className='bg-gray-100'>
                         <tr>
-                            <th></th>
-                            <th>ID</th>
-                            <th>Task</th>
-                            <th>Description</th>
+                            <th className="px-4 py-2"></th>
+                            <th className="px-4 py-2">ID</th>
+                            <th className="px-4 py-2">Task</th>
+                            <th className="px-4 py-2">Description</th>
+                            <th className="px-4 py-2">Status</th>
                         </tr>
                     </thead>
                 <tbody>
                 {tasks.map(task => (
-                    <tr key={task._id}>
-                        <td>
+                    <tr key={task._id} 
+                    className={`border-b hover:bg-gray-50 ${
+                        selectedTaskID === task._id ? "bg-gray-100" : ""
+                  }`}>
+                        <td className="px-4 py-2">
                             <input 
                                 type='radio'
                                 name='taskSelect'
@@ -65,9 +76,18 @@ const ToDoList = () => {
                                 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden'
                             />
                         </td>
-                        <td>{task._id}</td>
-                        <td>{task.title}</td>
-                        <td>{task.description}</td>
+                        <td className="px-4 py-2">{task._id}</td>
+                        <td className="px-4 py-2">{task.title}</td>
+                        <td className="px-4 py-2">{task.description}</td>
+                        <td className="px-4 py-2">
+                            <span
+                                className={`px-2 py-1 rounded-full text-sm font-semibold ${
+                                    task.status === "Complete" ? "bg-emerald-200 text-emerald-800" : "bg-red-200 text-red-800"
+                                }`}
+                            >  
+                                {task.status}
+                            </span>
+                        </td>
                     </tr>
                 ))}
                 </tbody>

@@ -17,11 +17,12 @@ router.get('/', async (req, res) => {
 // Creating one
 router.post('/', async (req, res) => {
     try {
-        const { title, description } = req.body
+        const { title, description, status } = req.body
 
         const task = new Task({
             title,
-            description
+            description,
+            status
         })
 
         const newTask = await task.save()

@@ -12,7 +12,7 @@ function App() {
       {/* Main content area */}
       <div className='bg-slate-200 flex-1 flex items-center gap-10 overflow-y-auto px-5'>
         {/* White container */}
-        <div className='bg-white max-w-3xl mx-auto flex-1 rounded-lg p-5'>
+        <div className='bg-white max-w-sm mx-auto flex-1 rounded-lg p-5'>
            <Metrics />
         </div>
         {/* White container 2 */}

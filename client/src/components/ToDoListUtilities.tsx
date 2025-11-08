@@ -9,11 +9,11 @@ interface ToDoListUtilitiesProps {
 
 const ToDoListUtilities = ({handleOpenToDoForm, fetchTasks, handleDeleteSelectedTask, selectedTaskID}: ToDoListUtilitiesProps) => {
     return(
-        <div className='flex bg-gray-100 justify-between rounded p-2 mb-5'>
-            <ListPlus onClick={(handleOpenToDoForm)} className='text-gray-500 hover:text-black' />
-            <ListRestart onClick={(fetchTasks)} className='text-gray-500 hover:text-black' />
+        <div className="flex gap-4 mb-5 bg-gray-50 p-3 rounded-xl shadow-sm">
+            <ListPlus onClick={(handleOpenToDoForm)} className="w-6 h-6 text-gray-500 hover:text-sky-500 cursor-pointer transition-colors" />
+            <ListRestart onClick={(fetchTasks)} className="w-6 h-6 text-gray-500 hover:text-sky-500 cursor-pointer transition-colors" />
             {selectedTaskID !== null && <div>
-                <ListX onClick={(handleDeleteSelectedTask)} className='text-gray-500 hover:text-black' />
+                <ListX onClick={(handleDeleteSelectedTask)} className="w-6 h-6 text-gray-500 hover:text-red-500 cursor-pointer transition-colors" />
             </div>}
         </div>
     )

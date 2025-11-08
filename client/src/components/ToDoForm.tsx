@@ -17,6 +17,7 @@ const ToDoForm = ({handleCloseToDoForm, handleAddTask}: ToDoFormProps) => {
         const newTask: Task = {
             title,
             description,
+            status: 'Incomplete'
         }
         handleAddTask(newTask)
         handleCloseToDoForm()
@@ -32,30 +33,39 @@ const ToDoForm = ({handleCloseToDoForm, handleAddTask}: ToDoFormProps) => {
 
     return (
         <div className='fixed inset-0 bg-black/50 z-50 flex justify-center items-center'>
-            <form onSubmit={handleSubmit} className='flex flex-col bg-white p-5 rounded-lg max-w-sm shadow-lg'>
-                <SquareX onClick={handleCloseToDoForm} className='text-gray-500 hover:text-black ' />
-                <h2 className="text-2xl font-bold text-gray-900 mb-5">Add Task</h2>
-                <label htmlFor='formTitle' className='block text-sm font-medium text-gray-900'>Task title</label>
+            <form onSubmit={handleSubmit} className='flex flex-col bg-white p-6 rounded-xl shadow-lg w-full max-w-md relative'>
+                <SquareX onClick={handleCloseToDoForm} className='absolute top-4 right-4 text-gray-500 hover:text-gray-900 cursor-pointer' />
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Task</h2>
+                <label htmlFor='formTitle' className='text-sm font-medium text-gray-700 mb-1'>Task title</label>
                 <input 
                     id='formTitle'
                     type='text'
                     value={title}
                     onChange={handleTitleChange}
                     required
-                    className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-5'
+                    className='mb-4 p-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-sky-300 outline-none'
                 />
-                <label htmlFor='formDescription' className='block text-sm font-medium text-gray-900'>Task description</label>
+                <label htmlFor='formDescription' className='text-sm font-medium text-gray-700 mb-1'>Task description</label>
                 <input 
                     id='formDescription'
                     type='text'
                     value={description}
                     onChange={handleDescriptionChange}
                     required
-                    className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-5'
+                    className='mb-4 p-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-sky-300 outline-none'
+                />
+                <label htmlFor='formStatus' className='text-sm font-medium text-gray-700 mb-1'>Status</label>
+                <input 
+                    id='formStatus'
+                    type='text'
+                    value='Incomplete'
+                    readOnly
+                    required
+                    className='mb-4 p-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-sky-300 outline-none'
                 />
                 <button 
                     type='submit'
-                    className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'>
+                    className='bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 rounded-lg transition-colors duration-200'>
                     Submit
                 </button>
             </form>
