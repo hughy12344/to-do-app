@@ -2,8 +2,10 @@ import './App.css'
 import Banner from './components/Banner.tsx'
 import Metrics from './components/Metrics.tsx'
 import ToDoList from './components/ToDoList.tsx'
+import useTasks from './hooks/useTasks.tsx'
 
 function App() {
+  const {tasks, isLoading, fetchTasks, handleAddTask , handleDeleteTask} = useTasks()
 
   return (
     // Main container for app
@@ -13,11 +15,11 @@ function App() {
       <div className='bg-slate-200 flex-1 flex items-center gap-10 overflow-y-auto px-5'>
         {/* White container */}
         <div className='bg-white max-w-sm mx-auto flex-1 rounded-lg p-5'>
-           <Metrics />
+           <Metrics tasks={tasks} isLoading={isLoading}/>
         </div>
         {/* White container 2 */}
         <div className='bg-white max-w-3xl mx-auto flex-1 rounded-lg p-5'>
-          <ToDoList />
+          <ToDoList tasks={tasks} isLoading={isLoading} fetchTasks={fetchTasks} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask}/>
         </div>
       </div>
     </div>

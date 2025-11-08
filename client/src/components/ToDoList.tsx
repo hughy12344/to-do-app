@@ -1,13 +1,19 @@
 import { useState } from "react"
 import ToDoListUtilities from "./ToDoListUtilities.tsx"
 import ToDoForm from "./ToDoForm.tsx"
-import useTasks from "../hooks/useTasks.tsx"
+import type { Task } from "../hooks/useTasks.tsx"
 
-const ToDoList = () => {
+interface ToDoListProps {
+    tasks: Task[]
+    isLoading: boolean
+    fetchTasks: () => void
+    handleAddTask: (task: Task) => Promise<void>
+    handleDeleteTask: (taskID: string) => void
+}
+
+const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask}: ToDoListProps) => {
     const [showToDoForm, setShowToDoForm] = useState<boolean>(false)
     const [selectedTaskID, setSelectedTaskID] = useState<string | null>(null)
-
-    const {tasks, isLoading, fetchTasks, handleAddTask , handleDeleteTask} = useTasks()
 
     const handleOpenToDoForm = () => setShowToDoForm(true)
     const handleCloseToDoForm = () => setShowToDoForm(false)
