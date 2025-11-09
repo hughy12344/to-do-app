@@ -45,3 +45,18 @@ export const deleteTask = async (taskID: string) => {
       throw err
   }
 }
+
+export const updateStatus = async (taskID: string, newStatus: string): Promise<void> => {
+  try {
+    await fetch(`http://localhost:8080/tasks/${taskID}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({ status: newStatus })
+    })
+  } catch (err) {
+    throw err
+  }
+}

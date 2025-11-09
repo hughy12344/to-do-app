@@ -55,7 +55,7 @@ const MetricCard = ({ title, value, percentage, colour, Icon, isLoading, showPer
 const Metrics = ({ tasks, isLoading }: MetricsProps) => {
 
     const totalTasks = tasks.length;
-    const completedTasks = tasks.filter(task => task.status === 'Completed').length;
+    const completedTasks = tasks.filter(task => task.status === 'Complete').length;
     const incompletedTasks = totalTasks - completedTasks;
 
     const percentageCompletedTasks = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
@@ -67,22 +67,22 @@ const Metrics = ({ tasks, isLoading }: MetricsProps) => {
         <MetricCard
             title="Total number of tasks"
             value={totalTasks}
-            colour="bg-emerald-400"
+            colour="bg-violet-400"
             Icon={ClipboardList}
             isLoading={isLoading}
             showPercentage={false}
         />
         <MetricCard
-            title="Number of complete tasks"
+            title="Completed tasks"
             value={completedTasks}
             percentage={percentageCompletedTasks}
-            colour="bg-violet-400"
+            colour="bg-emerald-400"
             Icon={CircleCheck}
             isLoading={isLoading}
             showPercentage={true}
         />
         <MetricCard
-            title="Number of incomplete tasks"
+            title="Incompleted tasks"
             value={incompletedTasks}
             percentage={percentageIncompletedTasks}
             colour="bg-red-400"

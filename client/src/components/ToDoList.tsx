@@ -8,12 +8,14 @@ interface ToDoListProps {
     isLoading: boolean
     fetchTasks: () => void
     handleAddTask: (task: Task) => Promise<void>
-    handleDeleteTask: (taskID: string) => void
+    handleDeleteTask: (taskID: string) => Promise<void>
+    handleUpdateStatus: (taskID: string, newStatus: string) => Promise<void>
 }
 
-const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask}: ToDoListProps) => {
+const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask, handleUpdateStatus}: ToDoListProps) => {
     const [showToDoForm, setShowToDoForm] = useState<boolean>(false)
     const [selectedTaskID, setSelectedTaskID] = useState<string | null>(null)
+    const [statusFilter, setStatusFilter] = useState<string>("All")
 
     const handleOpenToDoForm = () => setShowToDoForm(true)
     const handleCloseToDoForm = () => setShowToDoForm(false)
@@ -28,6 +30,10 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
         await handleDeleteTask(selectedTaskID)
         setSelectedTaskID(null)
     }
+
+    const filteredTasks = tasks.filter(task => 
+        statusFilter === "All" ? true : task.status === statusFilter
+    )
 
     return(
         <div className="p-6">
@@ -45,6 +51,8 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                 fetchTasks={fetchTasks} 
                 handleDeleteSelectedTask={handleDeleteSelectedTask} 
                 selectedTaskID={selectedTaskID}
+                statusFilter={statusFilter}
+                setStatusFilter={setStatusFilter}
             />
 
             {isLoading ? (
@@ -52,9 +60,9 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                     <div className='w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
                 </div>
             ) : (
-            <div className="overflow-x-auto rounded-lg shadow-md">
+            <div className="max-h-70 overflow-y-auto rounded-lg shadow-md">
                 <table className='w-full text-left border-collapse'>
-                    <thead className='bg-gray-100'>
+                    <thead className='bg-gray-100 sticky top-0 z-20'>
                         <tr>
                             <th className="px-4 py-2"></th>
                             <th className="px-4 py-2">ID</th>
@@ -64,7 +72,7 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                         </tr>
                     </thead>
                 <tbody>
-                {tasks.map(task => (
+                {filteredTasks.map(task => (
                     <tr key={task._id} 
                     className={`border-b hover:bg-gray-50 ${
                         selectedTaskID === task._id ? "bg-gray-100" : ""
@@ -86,13 +94,20 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                         <td className="px-4 py-2">{task.title}</td>
                         <td className="px-4 py-2">{task.description}</td>
                         <td className="px-4 py-2">
-                            <span
-                                className={`px-2 py-1 rounded-full text-sm font-semibold ${
-                                    task.status === "Complete" ? "bg-emerald-200 text-emerald-800" : "bg-red-200 text-red-800"
+                            <select
+                                value={task.status}
+                                onChange={async (e: React.ChangeEvent<HTMLSelectElement>) => {
+                                    if (task._id) await handleUpdateStatus(task._id, e.target.value)
+                                }}
+                                className={`border rounded-md px-2 py-1 text-sm cursor-pointer ${
+                                task.status === "Complete"
+                                    ? "bg-emerald-100 text-emerald-800"
+                                    : "bg-red-100 text-red-800"
                                 }`}
-                            >  
-                                {task.status}
-                            </span>
+                            >
+                                <option value="Incomplete">Incomplete</option>
+                                <option value="Complete">Complete</option>
+                            </select>
                         </td>
                     </tr>
                 ))}

@@ -47,7 +47,29 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: "Task deleted successfully ", deletedTask})
     } catch (err) {
         console.error(err)
-        res.status(500).json({ message: "Server error deleting task "})
+        res.status(500).json({ message: "Server error deleting task", error: err})
+    }
+})
+
+//Patching one
+router.patch('/:id', async (req, res) => {
+    try {
+        const {id} = req.params
+        const {status} = req.body
+
+        if (!status) {
+            return res.status(404).json({ message: "Missing status field in request body" })
+        }
+
+        const updatedTask = await Task.findByIdAndUpdate(
+            id, { status }, { new: true, runValidators: true }
+        )
+
+        if (!updatedTask) {
+            return res.status(404).json({ message: "Task not found" })
+        }
+    } catch (err) {
+        res.status(500).json({ message: "Server error updating status", error: err })
     }
 })
 
