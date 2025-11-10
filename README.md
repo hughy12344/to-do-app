@@ -58,15 +58,23 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 
 ## Technologies Used
 
-**Client:**
+### Client:
+- TypeScript
 - React (with Vite)
 - Fetch (for API calls)
-- TailwindCSS
+**Libraries:**
+- TailwindCSS (Inline CSS styling)
+- Lucide-React (Icons)
+- ESLint (Linter)
 
-**Server:**
-- Node.js
-- Express.js
+### Server:
+- TypeScript
 - MongoDB
+**Libraries:**
+- Express.js (Build RESTful APIs and handle HTTP responses/requests)
+- Mongoose (MongoDB library for scehma-based data validation)
+- Cors (Enable CORS policy between client/server)
+- Dotenv (Environment variables management)
 
 ## Setup Instructions
 
