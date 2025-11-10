@@ -12,10 +12,19 @@ interface ToDoListUtilitiesProps {
 const ToDoListUtilities = ({handleOpenToDoForm, fetchTasks, handleDeleteSelectedTask, selectedTaskID, statusFilter, setStatusFilter}: ToDoListUtilitiesProps) => {
     return(
         <div className="flex gap-4 mb-5 bg-gray-50 p-3 rounded-xl shadow-sm">
-            <ListPlus onClick={(handleOpenToDoForm)} className="w-6 h-6 text-gray-500 hover:text-sky-500 cursor-pointer transition-colors" />
-            <ListRestart onClick={(fetchTasks)} className="w-6 h-6 text-gray-500 hover:text-sky-500 cursor-pointer transition-colors" />
+            <ListPlus
+                onClick={(handleOpenToDoForm)} 
+                className="w-6 h-6 text-gray-500 hover:text-sky-500 cursor-pointer transition-colors" 
+            />
+            <ListRestart 
+                onClick={(fetchTasks)} 
+                className="w-6 h-6 text-gray-500 hover:text-sky-500 cursor-pointer transition-colors" 
+            />
             {selectedTaskID !== null && <div>
-                <ListX onClick={(handleDeleteSelectedTask)} className="w-6 h-6 text-gray-500 hover:text-red-500 cursor-pointer transition-colors" />
+                <ListX 
+                    onClick={(handleDeleteSelectedTask)} 
+                    className="w-6 h-6 text-gray-500 hover:text-red-500 cursor-pointer transition-colors" 
+                />
             </div>}
             <div className="flex ml-auto gap-2">
                 <ListFilter className="w-6 h-6 text-gray-500" />
