@@ -13,6 +13,7 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 - [License](#license)
 
 ## 📁 Project Structure
+```
 .
 ├── client
 │   ├── eslint.config.js
@@ -53,6 +54,7 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
     │   └── tasks.ts
     ├── server.ts
     └── tsconfig.json
+```
 
 ## 🚀 Features
 
@@ -76,15 +78,15 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 
 ## ⚙️ Setup Instructions
 
-### 1️⃣ Clone the repository
+### Clone the repository
 git clone https://github.com/hughy12344/to-do-app.git
 cd to-do-app
 
-# install client dependencies
+### Install client dependencies
 cd /client
 npm install
 
-# install server dependencies
+### Install server dependencies
 cd ../server
 npm install
 
