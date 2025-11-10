@@ -62,6 +62,7 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 - TypeScript
 - React (with Vite)
 - Fetch (for API calls)
+  
 **Libraries:**
 - TailwindCSS (Inline CSS styling)
 - Lucide-React (Icons)
@@ -70,6 +71,7 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 ### Server:
 - TypeScript
 - MongoDB
+  
 **Libraries:**
 - Express.js (Build RESTful APIs and handle HTTP responses/requests)
 - Mongoose (MongoDB library for scehma-based data validation)
