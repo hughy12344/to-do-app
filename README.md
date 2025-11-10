@@ -2,7 +2,7 @@
 A simple and responsive to-do list application for TSA Group skills assessment.
 The project demonstrates RESTful API design, CRUD operations, and a connected frontend interface.
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/username/repo/main.yml)
+![Build Status](https://img.shields.io/github/actions/workflow/status/hughy12344/to-do-app/main.yml)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Table of Contents
