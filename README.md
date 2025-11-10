@@ -57,6 +57,9 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 - Clear project documentation
 
 ## Technologies Used
+For this project, the chosen stack was used to provide an optimal balance of development experience, scalability and performance. Using TypeScript on both the client and server ensures type safety, easier debugging, and consistency across the codebase. React (with Vite) offers a fast and highly maintainable front-end framework through the use of custom components and hooks. Tailwind is a widley used utility-first CSS framework that enables rapid styling and gives the user interface a clean, modern, and responsive look.
+For the backend, Express.js and MongoDB (with Mongoose) were an ideal choice, as the project’s simple data structure is well-suited to a single-document database. This setup also allows for seamless integration with RESTful APIs, making data handling and communication between client and server efficient and straightforward.
+
 
 ### Client:
 - TypeScript
