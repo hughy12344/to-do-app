@@ -51,7 +51,7 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-//Patching one task
+// Patching one task
 router.patch('/:id', async (req, res) => {
     try {
         const {id} = req.params
