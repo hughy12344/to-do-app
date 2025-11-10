@@ -85,12 +85,12 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 - cd to-do-app
 
 ### Install client dependencies
-- cd /client
-- npm install
+- Migrate to client folder: cd /client
+- Install dependencies: npm install
 
 ### Install server dependencies
-- cd ../server
-- npm install
+- Migrate to server folder: cd /server
+- Install dependencies: npm install
 
 ### Add .env file to server folder
 - Email was attached with .env file to paste in the server folder
@@ -101,12 +101,12 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 ### Run front-end client
 - Migrate to client folder: cd client
 - Run command: npm run dev
-- Open im browser: http://localhost:5173/
+- Open in browser: http://localhost:5173/
 
 ### Run back-end server
 - Migrate to client folder: cd server
 - Run command: npm run dev
-- (Optional) Open im browser: http://localhost:8080/tasks/
+- (Optional) Open in browser: http://localhost:8080/tasks/
 
 ## Known Limitations / Future Improvements
 - Include user authentication (personal list)
