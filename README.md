@@ -4,13 +4,6 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## Table of Contents
-- [Project Structure](#📁 project structure)
-- [Features](#🚀 features)
-- [Technologies Used] (#🧰 technologies used)
-- [Setup Instructions](#⚙️ setup instructions)
-- [License](#license)
-
 ## 📁 Project Structure
 ```
 .
