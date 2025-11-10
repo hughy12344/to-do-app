@@ -5,6 +5,7 @@
   import useTasks from './hooks/useTasks.tsx'
 
   function App() {
+    //Import task state and functions from custom hook
     const {tasks, isLoading, fetchTasks, handleAddTask , handleDeleteTask, handleUpdateStatus} = useTasks()
 
     return (
@@ -13,7 +14,7 @@
         <Banner />
         {/* Main content area */}
         <div className='bg-gradient-to-r from-slate-100 to-slate-200 flex-1 flex items-center gap-10 overflow-y-auto px-5'>
-          {/* White container */}
+          {/* White container 1 */}
           <div className='bg-white max-w-sm mx-auto flex-1 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 mt-5 mb-5'>
             <Metrics tasks={tasks} isLoading={isLoading}/>
           </div>

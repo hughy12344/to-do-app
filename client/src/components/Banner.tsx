@@ -1,4 +1,3 @@
-
 const Banner = () => {
     return(
         <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 shadow-md p-3 flex flex-col items-center">
@@ -6,7 +5,7 @@ const Banner = () => {
                 To-Do App
             </h1>
             <p className="text-indigo-100 mt-2 text-sm md:text-base">
-            Hugh Cameron
+                Hugh Cameron
             </p>
         </div>
     )

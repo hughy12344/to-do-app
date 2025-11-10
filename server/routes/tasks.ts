@@ -3,7 +3,7 @@ import Task from '../models/task'
 
 const router = express.Router()
 
-// Getting all
+// Getting all tasks
 router.get('/', async (req, res) => {
   try {
         const tasks = await Task.find()
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-// Creating one
+// Creating one task
 router.post('/', async (req, res) => {
     try {
         const { title, description, status } = req.body
@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-// Deleting one
+// Deleting one task
 router.delete('/:id', async (req, res) => {
     try {
         const {id} = req.params
@@ -51,7 +51,7 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-//Patching one
+//Patching one task
 router.patch('/:id', async (req, res) => {
     try {
         const {id} = req.params

@@ -3,6 +3,7 @@ import ToDoListUtilities from "./ToDoListUtilities.tsx"
 import ToDoForm from "./ToDoForm.tsx"
 import type { Task } from "../hooks/useTasks.tsx"
 
+// Props for ToDoList component
 interface ToDoListProps {
     tasks: Task[]
     isLoading: boolean
@@ -12,31 +13,40 @@ interface ToDoListProps {
     handleUpdateStatus: (taskID: string, newStatus: string) => Promise<void>
 }
 
+// Main to-do list component (handles displays, filters and CRUD triggers)
 const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask, handleUpdateStatus}: ToDoListProps) => {
+    // Modal visibility state for Add Task form
     const [showToDoForm, setShowToDoForm] = useState<boolean>(false)
+
+    // Tracks currently selected task (for deletion)
     const [selectedTaskID, setSelectedTaskID] = useState<string | null>(null)
+
+    // Controls filtering of table based on status
     const [statusFilter, setStatusFilter] = useState<string>("All")
 
     const handleOpenToDoForm = () => setShowToDoForm(true)
     const handleCloseToDoForm = () => setShowToDoForm(false)
 
-    // Set new ID as selected task, if the same task is selected again, revert back to null
+    // Toggle selected task. Clicking again deselects it
     const handleSelectTask = (taskID: string) => {
         setSelectedTaskID(prev => (prev === taskID ? null : taskID))
     }
 
+    // Deletes currently selected task (if any)
     const handleDeleteSelectedTask = async () => {
         if (!selectedTaskID) return
         await handleDeleteTask(selectedTaskID)
         setSelectedTaskID(null)
     }
 
+    // Filter tasks based on current status selection
     const filteredTasks = tasks.filter(task => 
         statusFilter === "All" ? true : task.status === statusFilter
     )
 
     return(
         <div className="p-6">
+            {/* Show task creation form as modal */}
             {showToDoForm && (
                 <ToDoForm
                     handleCloseToDoForm={handleCloseToDoForm}
@@ -46,6 +56,7 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
 
             <h1 className="text-3xl font-bold mb-4">To-Do List</h1>
 
+            {/* Utility bar for adding, deleting, refreshing and filtering */}
             <ToDoListUtilities 
                 handleOpenToDoForm={handleOpenToDoForm} 
                 fetchTasks={fetchTasks} 
@@ -55,6 +66,7 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                 setStatusFilter={setStatusFilter}
             />
 
+            {/* Loading spinner when fetching tasks via API */}
             {isLoading ? (
                 <div className='flex justify-center py-10'>
                     <div className='w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
@@ -77,6 +89,7 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                     className={`border-b hover:bg-gray-50 ${
                         selectedTaskID === task._id ? "bg-gray-100" : ""
                   }`}>
+                        {/* Radio buttons for selecting a task */}
                         <td className="px-4 py-2">
                             <input 
                                 type='radio'
@@ -90,9 +103,12 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                                 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden'
                             />
                         </td>
+                        {/* Task details */}
                         <td className="px-4 py-2">{task._id}</td>
                         <td className="px-4 py-2">{task.title}</td>
                         <td className="px-4 py-2">{task.description}</td>
+
+                        {/* Status dropdown (updates immediately on change) */}
                         <td className="px-4 py-2">
                             <select
                                 value={task.status}

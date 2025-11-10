@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { addTask as apiAddTask, fetchTasks as apiFetchTasks, deleteTask as apiDeleteTask, updateStatus as apiUpdateStatus } from "../api/taskAPI"
 
+// Type definition for Task object
 export interface Task {
     _id?: string,
     title: string,
@@ -10,6 +11,7 @@ export interface Task {
     updatedAt?: Date
 }
 
+// Type definition for custom hook's return values
 interface UseTasksManagementProps {
     tasks: Task[]
     isLoading: boolean
@@ -20,10 +22,12 @@ interface UseTasksManagementProps {
     handleUpdateStatus: (taskID: string, newStatus: string) => Promise<void>
 }
 
+// Custom hook to manage task CRUD operations
 const useTasks = (initialTasks: Task[] = []): UseTasksManagementProps => {
     const [tasks, setTasks] = useState<Task[]>(initialTasks)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
+    // Fetch all tasks from API
     const fetchTasks = async (): Promise<void> => {
         setIsLoading(true);
         try {
@@ -36,11 +40,12 @@ const useTasks = (initialTasks: Task[] = []): UseTasksManagementProps => {
         }
     };
 
-    // Fetch tasks on mount
+    // Fetch tasks on component mount
     useEffect(() => {
         fetchTasks();
     }, []);
 
+    // Add new task via API and update local state
     const handleAddTask = async(task: Task): Promise<void> => {
         try {
             const newTask = await apiAddTask(task)
@@ -50,6 +55,7 @@ const useTasks = (initialTasks: Task[] = []): UseTasksManagementProps => {
         }
     }
 
+    // Delete a task via API and remove from local state
     const handleDeleteTask = async(taskID: string): Promise<void> => {
         try {
             await apiDeleteTask(taskID)
@@ -59,6 +65,7 @@ const useTasks = (initialTasks: Task[] = []): UseTasksManagementProps => {
         }
     }
 
+    // Optimistically update task status, revert if API fails (Ensures dynamic rendering of status change)
     const handleUpdateStatus = async(taskID: string, newStatus: string): Promise<void> => {
         setTasks(prevTasks =>
             prevTasks.map(task =>
@@ -69,7 +76,7 @@ const useTasks = (initialTasks: Task[] = []): UseTasksManagementProps => {
             await apiUpdateStatus(taskID, newStatus)
         } catch (err) {
             console.error('Error updating status: ', err)
-            // Revert changes if update fails
+            // Revert to previous status on failure
             setTasks(prevTasks =>
                 prevTasks.map(task =>
                     task._id === taskID ? { ...task, status: prevTasks.find(t => t._id === taskID)?.status || "Incomplete" } : task )

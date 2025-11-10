@@ -110,8 +110,8 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 
 ## Known Limitations / Future Improvements
 - Include user authentication (personal list)
-- Add light/dark mode and user preferences
-- Deploy front-end/back-end to cloud platforms (e.g., Vercel, Render)
+- Add light / dark mode and user preferences
+- Deploy front-end / back-end to cloud platforms (e.g., Vercel / Render)
 - Add more styling for screen re-sizing / small device compatibility
 - Hide task IDs from front-end after development
 

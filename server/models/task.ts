@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
+//TypeScript interface for Task
 export interface ITask extends Document {
     title: string;
     description: string;
@@ -8,6 +9,7 @@ export interface ITask extends Document {
     updatedAt: Date;
 }
 
+//MongoDB schema for Task
 const taskSchema = new Schema<ITask>(
     {
         title: {
