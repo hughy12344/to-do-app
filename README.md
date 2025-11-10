@@ -79,6 +79,10 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 - Dotenv (Environment variables management)
 
 ## Setup Instructions
+### Prerequisities
+- [Node.js](https://nodejs.org/)
+- npm (comes with Node)
+- Git (to clone the repository)
 
 ### Clone the repository
 - Clone repository: git clone https://github.com/hughy12344/to-do-app.git
