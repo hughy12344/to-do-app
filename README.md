@@ -5,10 +5,10 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+- [Project Structure](#📁 project structure)
+- [Features](#🚀 features)
+- [Technologies Used] (#🧰 technologies used)
+- [Setup Instructions](#⚙️ setup instructions)
 - [License](#license)
 
 ## 📁 Project Structure
@@ -77,17 +77,17 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 
 ## ⚙️ Setup Instructions
 
-### Clone the repository
-git clone https://github.com/hughy12344/to-do-app.git
-cd to-do-app
+### Clone the repositor
+- git clone https://github.com/hughy12344/to-do-app.git
+- cd to-do-app
 
 ### Install client dependencies
-cd /client
-npm install
+- cd /client
+- npm install
 
 ### Install server dependencies
-cd ../server
-npm install
+- cd ../server
+- npm install
 
 ## License
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
