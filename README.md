@@ -81,8 +81,8 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 ## Setup Instructions
 
 ### Clone the repository
-- git clone https://github.com/hughy12344/to-do-app.git
-- cd to-do-app
+- Clone repository: git clone https://github.com/hughy12344/to-do-app.git
+- Migrate to project folder: cd to-do-app
 
 ### Install client dependencies
 - Migrate to client folder: cd /client
