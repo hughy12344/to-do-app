@@ -4,7 +4,7 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## 📁 Project Structure
+## Project Structure
 ```
 .
 ├── client
@@ -48,7 +48,7 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
     └── tsconfig.json
 ```
 
-## 🚀 Features
+## Features
 
 - Create, read, update, and delete (CRUD) to-do items
 - RESTful API with JSON responses
@@ -56,7 +56,7 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 - Simple and responsive front-end interface
 - Clear project documentation
 
-## 🧰 Technologies Used
+## Technologies Used
 
 **Client:**
 - React (with Vite)
@@ -68,9 +68,9 @@ The project demonstrates RESTful API design, CRUD operations, and a connected fr
 - Express.js
 - MongoDB
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
-### Clone the repositor
+### Clone the repository
 - git clone https://github.com/hughy12344/to-do-app.git
 - cd to-do-app
 
