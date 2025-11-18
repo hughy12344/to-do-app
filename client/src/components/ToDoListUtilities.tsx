@@ -4,14 +4,14 @@ import { ListPlus, ListX, ListRestart, ListFilter } from 'lucide-react'
 interface ToDoListUtilitiesProps {
     handleOpenToDoForm: () => void
     fetchTasks: () => void
-    handleDeleteSelectedTask: () => void
+    handleOpenDeleteConfirmation: () => void
     selectedTaskID: string | null
     statusFilter: string
     setStatusFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
 // Toolbar component for managing task list actions and filters
-const ToDoListUtilities = ({handleOpenToDoForm, fetchTasks, handleDeleteSelectedTask, selectedTaskID, statusFilter, setStatusFilter}: ToDoListUtilitiesProps) => {
+const ToDoListUtilities = ({handleOpenToDoForm, fetchTasks, handleOpenDeleteConfirmation, selectedTaskID, statusFilter, setStatusFilter}: ToDoListUtilitiesProps) => {
     return(
         <div className="flex gap-4 mb-5 bg-gray-50 p-3 rounded-xl shadow-sm">
             {/* Add new task */}
@@ -29,7 +29,7 @@ const ToDoListUtilities = ({handleOpenToDoForm, fetchTasks, handleDeleteSelected
             {/* Delete selected task (only shown if one is selected) */}
             {selectedTaskID !== null && <div>
                 <ListX 
-                    onClick={(handleDeleteSelectedTask)} 
+                    onClick={(handleOpenDeleteConfirmation)} 
                     className="w-6 h-6 text-gray-500 hover:text-red-500 cursor-pointer transition-colors" 
                 />
             </div>}

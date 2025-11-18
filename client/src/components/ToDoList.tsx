@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ToDoListUtilities from "./ToDoListUtilities.tsx"
 import ToDoForm from "./ToDoForm.tsx"
+import DeleteConfirmation from "./DeleteConfirmation.tsx"
 import type { Task } from "../hooks/useTasks.tsx"
 
 // Props for ToDoList component
@@ -17,6 +18,9 @@ interface ToDoListProps {
 const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask, handleUpdateStatus}: ToDoListProps) => {
     // Modal visibility state for Add Task form
     const [showToDoForm, setShowToDoForm] = useState<boolean>(false)
+    
+    // Modal visibility state for Delete Confirmation
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState<boolean>(false)
 
     // Tracks currently selected task (for deletion)
     const [selectedTaskID, setSelectedTaskID] = useState<string | null>(null)
@@ -26,6 +30,9 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
 
     const handleOpenToDoForm = () => setShowToDoForm(true)
     const handleCloseToDoForm = () => setShowToDoForm(false)
+    
+    const handleOpenDeleteConfirmation = () => setShowDeleteConfirmation(true)
+    const handleCloseDeleteConfirmation = () => setShowDeleteConfirmation(false)
 
     // Toggle selected task. Clicking again deselects it
     const handleSelectTask = (taskID: string) => {
@@ -54,13 +61,23 @@ const ToDoList = ({tasks, isLoading, fetchTasks, handleAddTask, handleDeleteTask
                 />
             )}
 
+            {/* Show task deletion confirmation as modal */}
+            {showDeleteConfirmation && (
+                <DeleteConfirmation 
+                    handleDeleteSelectedTask={handleDeleteSelectedTask}
+                    handleCloseDeleteConfirmation={handleCloseDeleteConfirmation}
+                    selectedTaskID={selectedTaskID}
+                    tasks={tasks}
+                />
+            )}
+
             <h1 className="text-3xl font-bold mb-4">To-Do List</h1>
 
             {/* Utility bar for adding, deleting, refreshing and filtering */}
             <ToDoListUtilities 
                 handleOpenToDoForm={handleOpenToDoForm} 
                 fetchTasks={fetchTasks} 
-                handleDeleteSelectedTask={handleDeleteSelectedTask} 
+                handleOpenDeleteConfirmation={handleOpenDeleteConfirmation}
                 selectedTaskID={selectedTaskID}
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
