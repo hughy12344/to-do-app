@@ -111,7 +111,7 @@ For the backend, Express.js and MongoDB (with Mongoose) were an ideal choice, as
 - Open in browser: http://localhost:5173/
 
 ### Run back-end server
-- Migrate to client folder: cd server
+- Migrate to server folder: cd server
 - Run command: npm run dev
 - (Optional) Open in browser: http://localhost:8080/tasks/
 
